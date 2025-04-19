@@ -45,7 +45,7 @@ internal static class PipeUtil
     public static bool StartPipeMux(string binary, string[] pipeNames, string outputPath)
     {
         var dateString = DateTime.Now.ToString("o");
-        var command = new StringBuilder("-y -fflags +genpts -loglevel quiet ");
+        var command = new StringBuilder("-re -rtbufsize 100M -y -max_interleave_delta 200M -fflags +fastseek+ignidx+discardcorrupt+shortest+genpts -loglevel quiet ");
 
         var customDest = OtherUtil.GetEnvironmentVariable(EnvConfigKey.ReLivePipeOptions);
         var pipeDir = OtherUtil.GetEnvironmentVariable(EnvConfigKey.ReLivePipeTmpDir, Path.GetTempPath());
